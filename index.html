@@ -33,7 +33,7 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 .chat-box.open{display:flex;flex-direction:column}.chat-head{background:var(--deep);color:#fff;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}.chat-head small{display:block;color:#d6dfda;margin-top:2px}.chat-close{background:none;border:0;color:#fff;font-size:22px;cursor:pointer}.chat-log{flex:1;overflow:auto;padding:14px;background:#f7f8f6}.chat-msg{max-width:86%;padding:10px 12px;border-radius:14px;margin:7px 0;font-size:14px}.chat-bot{background:#fff;border:1px solid #e3e7e3}.chat-user{background:var(--deep);color:#fff;margin-left:auto}.chat-actions{padding:10px;display:flex;gap:7px;flex-wrap:wrap;border-top:1px solid var(--line)}.chat-actions button{border:1px solid #cfd6d1;background:#fff;border-radius:18px;padding:8px 10px;cursor:pointer;font-size:12px}.chat-form{display:flex;gap:7px;padding:10px;border-top:1px solid var(--line)}.chat-form input{padding:10px 12px}.chat-form button{border:0;background:var(--deep);color:#fff;border-radius:10px;padding:0 14px;cursor:pointer}
 @media(max-width:800px){.chat-box{right:14px;bottom:76px}.chat-launch{right:14px;bottom:14px}}</style></head>
 <body>
-<nav><div class="logo">BESIDE YOU</div><div class="nav"><a href="#services">Services</a><a href="#about">About</a><a href="#how">How it works</a><a href="#booking">Booking</a></div></nav>
+<nav><div class="logo">BESIDE YOU</div><div class="nav"><a href="#services">Services</a><a href="#about">About</a><a href="#how">How it works</a><a href="#faq">FAQ</a><a href="#booking">Booking</a></div></nav>
 
 <header class="hero">
 <div><div class="kicker">Mumbai · Private companionship</div><h1>Good company, when you need it.</h1>
@@ -78,8 +78,20 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 <li><strong>Disputes:</strong> Any dispute will be addressed in accordance with applicable law and the terms communicated for the particular booking.</li>
 </ol><p class="agreement-note"><strong>Important:</strong> This is a general website template, not legal advice. Obtain a lawyer's review before relying on it as a binding client contract.</p></div>
 </div></section>
+
+<section id="faq"><div class="kicker">FAQ</div><h2>Frequently asked questions.</h2>
+<div class="grid">
+<div class="card"><h3>Is a booking confirmed when I submit the form?</h3><p>No. A form submission is an enquiry only. Availability and final details must be mutually agreed before a booking is confirmed.</p></div>
+<div class="card"><h3>Who can enquire?</h3><p>BESIDE YOU is for adults aged 18 or older. The website only accepts enquiries for the services described here.</p></div>
+<div class="card"><h3>What information should I provide?</h3><p>Provide your name, WhatsApp number, preferred date, time, duration, area, occasion and a brief message. Do not send Aadhaar, PAN, OTPs, passwords or banking credentials.</p></div>
+<div class="card"><h3>Can I request a different service?</h3><p>Requests are considered only when they fit the services published on this website and applicable law. Requests involving unlawful activity will not be accepted.</p></div>
+<div class="card"><h3>How is my enquiry handled?</h3><p>Enquiries are delivered by a third-party form-processing service to the BESIDE YOU business email. Only information needed to respond to the enquiry should be submitted.</p></div>
+<div class="card"><h3>How do I contact BESIDE YOU?</h3><p>Use the booking form or the WhatsApp contact button on this website. Availability is confirmed individually.</p></div>
+</div></section>
+
 <section id="booking"><div class="contact"><div class="kicker" style="color:#bfcac4">Private enquiries</div><h2>Request a booking.</h2>
 <p>Adult clients only. Submit your enquiry through this form. You will receive a confirmation page after submission; this does not itself confirm availability or a booking.</p>
+<a class="btn" href="https://wa.me/919987233842?text=Hi%20BESIDE%20YOU%2C%20I%27d%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer">WhatsApp enquiry</a>
 <form action="https://formsubmit.co/35d3d69639e89acdc9fc098805d10ecc" method="POST">
 <input type="hidden" name="_url" value="https://besideyou-mumbai.github.io/beside-you/"><input type="hidden" name="_subject" value="BESIDE YOU — New booking enquiry (Confirmation Pending)">
 <input type="hidden" name="_template" value="table">
@@ -99,7 +111,7 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 <button class="btn" type="submit">Send enquiry</button>
 <label class="agreement-check"><input type="checkbox" name="agreement" value="accepted" required><span>I confirm that I am 18 or older and have read and agree to the <a href="#agreement">Client Agreement &amp; Booking Terms</a>.</span></label>
 </form>
-<div class="notice">Do not submit Aadhaar, PAN, OTPs, passwords or financial information through this form. Booking enquiries are processed through a third-party form service for email delivery. Only provide information needed to respond to your enquiry.</div>
+<div class="notice">For quick enquiries, you may also use the WhatsApp button above. Do not submit Aadhaar, PAN, OTPs, passwords or financial information through this form. Booking enquiries are processed through a third-party form service for email delivery. Only provide information needed to respond to your enquiry.</div>
 </div></section>
 
 <button class="chat-launch" id="chatLaunch" type="button" aria-label="Open BESIDE YOU chat">Chat with us</button>
@@ -144,6 +156,14 @@ form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim()
 })();
 </script>
 
-<footer>© 2026 BESIDE YOU · Mumbai · Adult companionship service · <a href="#agreement">Client Agreement</a></footer>
+
+<section id="privacy"><div class="kicker">Privacy</div><h2>Privacy notice.</h2>
+<div class="card">
+<p>BESIDE YOU collects the information you choose to provide in an enquiry form so the request can be reviewed and answered. Form submissions are delivered through a third-party form-processing service to the BESIDE YOU business email.</p>
+<p>Do not submit Aadhaar, PAN, OTPs, passwords, banking credentials or other unnecessary sensitive information. Information should be limited to what is reasonably needed to respond to the enquiry and arrange an agreed booking.</p>
+<p>Submitting an enquiry does not itself confirm a booking. Information should be handled privately and in accordance with applicable law.</p>
+</div></section>
+
+<footer>© 2026 BESIDE YOU · Mumbai · Adult companionship service · <a href="#agreement">Client Agreement</a> · <a href="#privacy">Privacy</a> · <a href="#faq">FAQ</a></footer>
 </body>
 </html>
