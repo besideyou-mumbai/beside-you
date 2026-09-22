@@ -27,11 +27,7 @@ form{display:grid;gap:14px;max-width:700px}input,select,textarea{width:100%;padd
 footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
 @media(max-width:800px){.nav a{display:none}.hero,.profile{grid-template-columns:1fr}.hero{padding:45px 6%}.hero img{height:430px}.grid,.gallery,.steps{grid-template-columns:1fr}section{padding:60px 6%}h2{font-size:36px}.gallery img,.gallery img:first-child{height:360px}}
 </style>
-<style>.agreement-card{max-width:900px}.agreement-list{padding-left:1.35rem;line-height:1.75}.agreement-list li{margin-bottom:.8rem}.agreement-note{margin-top:1.25rem;padding:1rem;border-left:3px solid currentColor}.agreement-check{display:flex;gap:.65rem;align-items:flex-start;margin:1rem 0;line-height:1.5}.agreement-check input{margin-top:.3rem;flex:0 0 auto}
-.chat-launch{position:fixed;right:22px;bottom:22px;z-index:30;border:0;border-radius:999px;background:var(--deep);color:#fff;padding:14px 19px;font-weight:800;box-shadow:0 8px 30px rgba(0,0,0,.18);cursor:pointer}
-.chat-box{position:fixed;right:22px;bottom:82px;width:min(360px,calc(100vw - 28px));height:500px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 15px 50px rgba(0,0,0,.2);z-index:29;display:none;overflow:hidden}
-.chat-box.open{display:flex;flex-direction:column}.chat-head{background:var(--deep);color:#fff;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}.chat-head small{display:block;color:#d6dfda;margin-top:2px}.chat-close{background:none;border:0;color:#fff;font-size:22px;cursor:pointer}.chat-log{flex:1;overflow:auto;padding:14px;background:#f7f8f6}.chat-msg{max-width:86%;padding:10px 12px;border-radius:14px;margin:7px 0;font-size:14px}.chat-bot{background:#fff;border:1px solid #e3e7e3}.chat-user{background:var(--deep);color:#fff;margin-left:auto}.chat-actions{padding:10px;display:flex;gap:7px;flex-wrap:wrap;border-top:1px solid var(--line)}.chat-actions button{border:1px solid #cfd6d1;background:#fff;border-radius:18px;padding:8px 10px;cursor:pointer;font-size:12px}.chat-form{display:flex;gap:7px;padding:10px;border-top:1px solid var(--line)}.chat-form input{padding:10px 12px}.chat-form button{border:0;background:var(--deep);color:#fff;border-radius:10px;padding:0 14px;cursor:pointer}
-@media(max-width:800px){.chat-box{right:14px;bottom:76px}.chat-launch{right:14px;bottom:14px}}</style></head>
+<style>.agreement-card{max-width:900px}.agreement-list{padding-left:1.35rem;line-height:1.75}.agreement-list li{margin-bottom:.8rem}.agreement-note{margin-top:1.25rem;padding:1rem;border-left:3px solid currentColor}.agreement-check{display:flex;gap:.65rem;align-items:flex-start;margin:1rem 0;line-height:1.5}.agreement-check input{margin-top:.3rem;flex:0 0 auto}</style></head>
 <body>
 <nav><div class="logo">BESIDE YOU</div><div class="nav"><a href="#services">Services</a><a href="#about">About</a><a href="#how">How it works</a><a href="#booking">Booking</a></div></nav>
 
@@ -79,15 +75,10 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 </ol><p class="agreement-note"><strong>Important:</strong> This is a general website template, not legal advice. Obtain a lawyer's review before relying on it as a binding client contract.</p></div>
 </div></section>
 <section id="booking"><div class="contact"><div class="kicker" style="color:#bfcac4">Private enquiries</div><h2>Request a booking.</h2>
-<p>Adult clients only. Submit your enquiry securely through this form. You will receive a confirmation page after submission.</p>
-<form action="https://formsubmit.co/besideyou.mumbai@gmail.com" method="POST">
-<input type="hidden" name="_subject" value="BESIDE YOU — New booking enquiry">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_next" value="https://besideyou-mumbai.github.io/beside-you/thanks.html">
-<input type="hidden" name="_captcha" value="true">
-<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+<p>Adult clients only. This form is a prototype; connect it to your business email or booking system before publishing.</p>
+<form action="mailto:besideyou.mumbai@gmail.com" method="post" enctype="text/plain">
 <input name="name" placeholder="First name" required>
-<input name="whatsapp" placeholder="WhatsApp number" inputmode="tel" required>
+<input name="whatsapp" placeholder="WhatsApp number" required>
 <select name="occasion" required><option value="">Select occasion</option><option>Dinner / social occasion</option><option>Event / function</option><option>Day companionship</option><option>Travel companionship</option></select>
 <input name="date" type="date" required>
 <textarea name="message" placeholder="Tell us briefly about your request"></textarea>
@@ -98,48 +89,6 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 <div class="notice">Do not submit Aadhaar, PAN, OTPs, passwords or financial information through this form.</div>
 </div></section>
 
-<button class="chat-launch" id="chatLaunch" type="button" aria-label="Open BESIDE YOU chat">Chat with us</button>
-<div class="chat-box" id="chatBox" aria-label="BESIDE YOU chat assistant">
-<div class="chat-head"><div><strong>BESIDE YOU Assistant</strong><small>Booking & general information</small></div><button class="chat-close" id="chatClose" type="button" aria-label="Close chat">×</button></div>
-<div class="chat-log" id="chatLog" aria-live="polite"></div>
-<div class="chat-actions" id="chatActions">
-<button type="button" data-q="What services do you offer?">Services</button>
-<button type="button" data-q="How do I book?">How to book</button>
-<button type="button" data-q="Are you 18+ only?">18+ policy</button>
-<button type="button" data-q="What about privacy?">Privacy</button>
-</div>
-<form class="chat-form" id="chatForm">
-<input id="chatInput" autocomplete="off" placeholder="Ask a question…" aria-label="Chat message">
-<button type="submit">Send</button>
-</form>
-</div>
-
-<script>
-(function(){
-const box=document.getElementById('chatBox'), launch=document.getElementById('chatLaunch'), close=document.getElementById('chatClose');
-const log=document.getElementById('chatLog'), form=document.getElementById('chatForm'), input=document.getElementById('chatInput'), actions=document.getElementById('chatActions');
-function add(text,who){
- const d=document.createElement('div'); d.className='chat-msg '+(who==='user'?'chat-user':'chat-bot'); d.textContent=text; log.appendChild(d); log.scrollTop=log.scrollHeight;
-}
-function answer(q){
- const x=q.toLowerCase();
- if(x.includes('service')||x.includes('offer')) return 'BESIDE YOU offers adult companionship for dinners and social occasions, events and functions, and planned day or travel companionship, subject to availability and agreed terms.';
- if(x.includes('book')||x.includes('enquir')) return 'Use the Request a booking form on this page. Share your first name, WhatsApp number, occasion and preferred date. An enquiry is not a confirmed booking until details are mutually agreed.';
- if(x.includes('18')||x.includes('age')) return 'BESIDE YOU is for adults aged 18 or older only. The website requires an age confirmation before an enquiry can be submitted.';
- if(x.includes('privacy')||x.includes('safe')||x.includes('data')) return 'Please do not send Aadhaar, PAN, OTPs, passwords, banking details or other unnecessary sensitive information. Booking enquiries are handled privately.';
- if(x.includes('price')||x.includes('rate')||x.includes('cost')) return 'Pricing depends on the requested occasion, duration and arrangements. Please submit an enquiry for current availability and applicable terms.';
- if(x.includes('location')||x.includes('mumbai')||x.includes('area')) return 'BESIDE YOU is Mumbai-based. Share your preferred area in the booking message so availability can be checked.';
- if(x.includes('sex')||x.includes('sexual')||x.includes('escort')||x.includes('prostitut')) return 'The website is for the companionship services described on this site. I cannot arrange or facilitate illegal activity or sexual services.';
- return 'I can help with services, booking, age requirements, privacy, locations and general website information. For a specific request, use the booking form below.';
-}
-add('Hello. I can answer questions about services, booking, privacy and general information.','bot');
-launch.onclick=()=>{box.classList.add('open');input.focus()};
-close.onclick=()=>box.classList.remove('open');
-actions.addEventListener('click',e=>{if(e.target.dataset.q){add(e.target.dataset.q,'user');add(answer(e.target.dataset.q),'bot')}});
-form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();if(!q)return;add(q,'user');add(answer(q),'bot');input.value='';});
-})();
-</script>
-
-<footer>© 2026 BESIDE YOU · Mumbai · Adult companionship service · <a href="#agreement">Client Agreement</a></footer>
+<footer>© 2026 BESIDE YOU · Mumbai · Prototype · Adult companionship service</footer>
 </body>
 </html>
