@@ -40,9 +40,6 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 .chat-box{position:fixed;right:22px;bottom:82px;width:min(360px,calc(100vw - 28px));height:500px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 15px 50px rgba(0,0,0,.2);z-index:29;display:none;overflow:hidden}
 .chat-box.open{display:flex;flex-direction:column}.chat-head{background:var(--deep);color:#fff;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}.chat-head small{display:block;color:#d6dfda;margin-top:2px}.chat-close{background:none;border:0;color:#fff;font-size:22px;cursor:pointer}.chat-log{flex:1;overflow:auto;padding:14px;background:#f7f8f6}.chat-msg{max-width:86%;padding:10px 12px;border-radius:14px;margin:7px 0;font-size:14px}.chat-bot{background:#fff;border:1px solid #e3e7e3}.chat-user{background:var(--deep);color:#fff;margin-left:auto}.chat-actions{padding:10px;display:flex;gap:7px;flex-wrap:wrap;border-top:1px solid var(--line)}.chat-actions button{border:1px solid #cfd6d1;background:#fff;border-radius:18px;padding:8px 10px;cursor:pointer;font-size:12px}.chat-form{display:flex;gap:7px;padding:10px;border-top:1px solid var(--line)}.chat-form input{padding:10px 12px}.chat-form button{border:0;background:var(--deep);color:#fff;border-radius:10px;padding:0 14px;cursor:pointer}
 @media(max-width:800px){.chat-box{right:14px;bottom:76px}.chat-launch{right:14px;bottom:14px}}
-.availability-status{margin:2px 0 8px;padding:10px 12px;border-radius:10px;font-size:13px;background:#f7f8f6;border:1px solid var(--line);color:var(--muted)}
-.availability-status.checking{color:#66716b}.availability-status.available{color:#24583f;border-color:#b9d7c5;background:#f0f8f3}.availability-status.unavailable{color:#8a2f2f;border-color:#e5bcbc;background:#fff4f4}.availability-status.error{color:#7a5b22;border-color:#e3d2a7;background:#fffaf0}
-.availability-help{font-size:12px;color:var(--muted);margin:0 0 8px}
 </style></head>
 <body>
 <nav><div class="logo">BESIDE YOU</div><div class="nav"><a href="#services">Services</a><a href="#about">About</a><a href="#how">How it works</a><a href="#faq">FAQ</a><a href="#booking">Booking</a></div></nav>
@@ -117,8 +114,6 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 <input id="bookingDate" name="date" type="date" required>
 <input id="bookingTime" name="time" type="time" required>
 <select id="bookingDuration" name="duration" required><option value="">Select duration</option><option>1–2 hours</option><option>3–4 hours</option><option>Half day</option><option>Full day</option></select>
-<div id="availabilityStatus" class="availability-status" role="status" aria-live="polite">Select a date, time and duration to check availability.</div>
-<p class="availability-help">Availability is checked against the BESIDE YOU Availability calendar. This does not confirm a booking; final confirmation is subject to BESIDE YOU.</p>
 <input name="area" placeholder="Preferred area / location" required>
 <textarea name="message" placeholder="Tell us briefly about your request"></textarea>
 <label class="age-check" style="font-size:13px;display:flex;gap:.65rem;align-items:center"><input type="checkbox" name="age_confirmation" value="18+ confirmed" required style="width:auto;flex:0 0 auto"> <span>I confirm that I am 18 or older.</span></label>
@@ -145,94 +140,7 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 </div>
 
 
-<script>
-(function(){
-  const endpoint = 'https://script.google.com/macros/s/AKfycbyH9Rz2qQ-u28Ch_bKYJ3QMh9c9RNBPCAKygLGtHWpQhi_-w-6JFAtKfm2nuwdY__L3/exec';
-  const dateEl = document.getElementById('bookingDate');
-  const timeEl = document.getElementById('bookingTime');
-  const durationEl = document.getElementById('bookingDuration');
-  const statusEl = document.getElementById('availabilityStatus');
-  const bookingForm = document.querySelector('#booking form');
-  let requestNumber = 0;
-  let currentAvailability = null;
 
-  function setStatus(message, state){
-    statusEl.textContent = message;
-    statusEl.className = 'availability-status' + (state ? ' ' + state : '');
-  }
-
-  function checkAvailability(){
-    const date = dateEl.value;
-    const time = timeEl.value;
-    const duration = durationEl.value;
-
-    currentAvailability = null;
-
-    if(!date || !time || !duration){
-      setStatus('Select a date, time and duration to check availability.', '');
-      return;
-    }
-
-    const thisRequest = ++requestNumber;
-    setStatus('Checking availability…', 'checking');
-
-    const callbackName = 'besideYouAvailability_' + Date.now() + '_' + thisRequest;
-    const script = document.createElement('script');
-    const params = new URLSearchParams({
-      date: date,
-      time: time,
-      duration: duration,
-      callback: callbackName
-    });
-
-    window[callbackName] = function(data){
-      if(thisRequest !== requestNumber) return;
-      currentAvailability = data && data.available === true;
-      if(currentAvailability){
-        setStatus('Available — this time is currently free on the availability calendar.', 'available');
-      }else{
-        setStatus('Not available — please choose another date or time.', 'unavailable');
-      }
-      cleanup();
-    };
-
-    function cleanup(){
-      delete window[callbackName];
-      if(script.parentNode) script.parentNode.removeChild(script);
-    }
-
-    script.onerror = function(){
-      if(thisRequest !== requestNumber) return;
-      currentAvailability = null;
-      setStatus('Availability could not be checked right now. You can still send an enquiry for manual review.', 'error');
-      cleanup();
-    };
-
-    script.src = endpoint + '?' + params.toString();
-    document.body.appendChild(script);
-  }
-
-  [dateEl, timeEl, durationEl].forEach(function(el){
-    el.addEventListener('change', checkAvailability);
-  });
-
-  bookingForm.addEventListener('submit', function(event){
-    if(currentAvailability === false){
-      event.preventDefault();
-      setStatus('This slot is currently unavailable. Please choose another date or time.', 'unavailable');
-      statusEl.scrollIntoView({behavior:'smooth', block:'center'});
-      return;
-    }
-
-    if(currentAvailability === null){
-      event.preventDefault();
-      setStatus('Please wait for the availability check to finish before sending your enquiry.', 'checking');
-      checkAvailability();
-      statusEl.scrollIntoView({behavior:'smooth', block:'center'});
-    }
-  });
-})();
-</script>
 
 <script>
 (function(){
@@ -274,7 +182,6 @@ form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim()
 <div class="card">
 <p>BESIDE YOU collects the information you choose to provide in an enquiry form so the request can be reviewed and answered. Form submissions are delivered through a third-party form-processing service to the BESIDE YOU business email.</p>
 <p>Do not submit Aadhaar, PAN, OTPs, passwords, banking credentials or other unnecessary sensitive information. Information should be limited to what is reasonably needed to respond to the enquiry and arrange an agreed booking.</p>
-<p>When you use the availability checker, your selected date, time and duration are sent to the BESIDE YOU Google Apps Script/Calendar availability service to check whether the requested slot is currently free. Calendar event details are not displayed on the website.</p>
 <p>Submitting an enquiry does not itself confirm a booking. Information should be handled privately and in accordance with applicable law.</p>
 </div></section>
 
