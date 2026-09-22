@@ -7,6 +7,11 @@
 <meta name="description" content="BESIDE YOU — professional adult companionship in Mumbai for dinners, events and social occasions.">
 <meta name="robots" content="index,follow">
 <meta name="author" content="BESIDE YOU">
+<meta name="theme-color" content="#1d342d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BESIDE YOU | Mumbai Companionship">
+<meta property="og:description" content="Private adult companionship in Mumbai for dinners, events and social occasions.">
+<meta property="og:url" content="https://besideyou-mumbai.github.io/beside-you/">
 <link rel="canonical" href="https://besideyou-mumbai.github.io/beside-you/">
 <style>
 :root{--ink:#17211e;--muted:#66716b;--cream:#f5f1e9;--white:#fff;--deep:#1d342d;--line:#dfe4df}
@@ -229,6 +234,15 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 })();
 </script>
 
+<script>
+(function(){
+  const dateEl = document.getElementById('bookingDate');
+  if(!dateEl) return;
+  const now = new Date();
+  const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0,10);
+  dateEl.min = localDate;
+})();
+</script>
 <script>
 (function(){
 const box=document.getElementById('chatBox'), launch=document.getElementById('chatLaunch'), close=document.getElementById('chatClose');
