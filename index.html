@@ -79,9 +79,9 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 </ol><p class="agreement-note"><strong>Important:</strong> This is a general website template, not legal advice. Obtain a lawyer's review before relying on it as a binding client contract.</p></div>
 </div></section>
 <section id="booking"><div class="contact"><div class="kicker" style="color:#bfcac4">Private enquiries</div><h2>Request a booking.</h2>
-<p>Adult clients only. Submit your enquiry securely through this form. You will receive a confirmation page after submission.</p>
+<p>Adult clients only. Submit your enquiry through this form. You will receive a confirmation page after submission; this does not itself confirm availability or a booking.</p>
 <form action="https://formsubmit.co/35d3d69639e89acdc9fc098805d10ecc" method="POST">
-<input type="hidden" name="_url" value="https://besideyou-mumbai.github.io/beside-you/"><input type="hidden" name="_subject" value="BESIDE YOU — New booking enquiry">
+<input type="hidden" name="_url" value="https://besideyou-mumbai.github.io/beside-you/"><input type="hidden" name="_subject" value="BESIDE YOU — New booking enquiry (Confirmation Pending)">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_next" value="https://besideyou-mumbai.github.io/beside-you/thanks.html">
 <input type="hidden" name="_captcha" value="true">
@@ -92,12 +92,14 @@ footer{padding:35px 7%;color:var(--muted);font-size:13px;border-top:1px solid va
 <select name="occasion" required><option value="">Select occasion</option><option>Dinner / social occasion</option><option>Event / function</option><option>Day companionship</option><option>Travel companionship</option></select>
 <input name="date" type="date" required>
 <input name="time" type="time" required>
+<select name="duration" required><option value="">Select duration</option><option>1–2 hours</option><option>3–4 hours</option><option>Half day</option><option>Full day</option></select>
+<input name="area" placeholder="Preferred area / location" required>
 <textarea name="message" placeholder="Tell us briefly about your request"></textarea>
 <label class="age-check" style="font-size:13px;display:flex;gap:.65rem;align-items:center"><input type="checkbox" name="age_confirmation" value="18+ confirmed" required style="width:auto;flex:0 0 auto"> <span>I confirm that I am 18 or older.</span></label>
 <button class="btn" type="submit">Send enquiry</button>
 <label class="agreement-check"><input type="checkbox" name="agreement" value="accepted" required><span>I confirm that I am 18 or older and have read and agree to the <a href="#agreement">Client Agreement &amp; Booking Terms</a>.</span></label>
 </form>
-<div class="notice">Do not submit Aadhaar, PAN, OTPs, passwords or financial information through this form.</div>
+<div class="notice">Do not submit Aadhaar, PAN, OTPs, passwords or financial information through this form. Booking enquiries are processed through a third-party form service for email delivery. Only provide information needed to respond to your enquiry.</div>
 </div></section>
 
 <button class="chat-launch" id="chatLaunch" type="button" aria-label="Open BESIDE YOU chat">Chat with us</button>
